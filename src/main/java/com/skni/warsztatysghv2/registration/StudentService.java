@@ -8,14 +8,17 @@ public class StudentService {
     private UUIDStudentIdGenerator studentIdGenerator;
     private StatusService statusService;
     private ApplicationFormService applicationFormService;
+
     @Autowired
     public void setStudentIdGenerator(UUIDStudentIdGenerator studentIdGenerator) {
         this.studentIdGenerator = studentIdGenerator;
     }
+
     @Autowired
     public void setStatusService(StatusService statusService) {
         this.statusService = statusService;
     }
+
     @Autowired
     public void setApplicationFormService(ApplicationFormService applicationFormService) {
         this.applicationFormService = applicationFormService;

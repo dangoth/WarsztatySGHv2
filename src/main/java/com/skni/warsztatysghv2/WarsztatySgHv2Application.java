@@ -12,12 +12,9 @@ import org.springframework.context.event.EventListener;
 public class WarsztatySgHv2Application {
 
     private StudentService studentService;
+
     @Autowired
     public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
-    }
-
-    public WarsztatySgHv2Application(StudentService studentService) {
         this.studentService = studentService;
     }
 
