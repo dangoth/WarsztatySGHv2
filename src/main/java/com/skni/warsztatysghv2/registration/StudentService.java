@@ -2,24 +2,30 @@ package com.skni.warsztatysghv2.registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.io.IOException;
+
 @Component
 public class StudentService {
 
     private final UUIDStudentIdGenerator studentIdGenerator;
     private final StatusService statusService;
     private final ApplicationFormService applicationFormService;
+    private final FileSaver fileSaver;
 
     @Autowired
     public StudentService(
-            UUIDStudentIdGenerator studentIdGenerator, StatusService statusService, ApplicationFormService applicationFormService) {
+            UUIDStudentIdGenerator studentIdGenerator, StatusService statusService,
+            ApplicationFormService applicationFormService, FileSaver fileSaver) {
         this.studentIdGenerator = studentIdGenerator;
         this.statusService = statusService;
         this.applicationFormService = applicationFormService;
+        this.fileSaver = fileSaver;
     }
 
-    public void printStudent() {
+    public void printStudent() throws IOException {
         Student student = create(applicationFormService.createMock());
         System.out.println(student);
+        fileSaver.saveToFile(student);
     }
 
     public Student create(ApplicationForm applicationForm) {
@@ -30,5 +36,4 @@ public class StudentService {
         Status status = statusService.randomStatus();
         return new Student(id, firstName, lastName, email, status); // new allowed here
     }
-
 }
