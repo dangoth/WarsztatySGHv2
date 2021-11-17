@@ -2,6 +2,7 @@ package com.skni.warsztatysghv2;
 
 import com.skni.warsztatysghv2.registration.Student;
 import com.skni.warsztatysghv2.registration.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -10,7 +11,11 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class WarsztatySgHv2Application {
 
-    private final StudentService studentService;
+    private StudentService studentService;
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     public WarsztatySgHv2Application(StudentService studentService) {
         this.studentService = studentService;
